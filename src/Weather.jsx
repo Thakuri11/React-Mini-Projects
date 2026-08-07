@@ -5,7 +5,7 @@ export default function Weather() {
   const [weather, setWeather] = useState(null);
   const [forecast, setForecast] = useState([]);
   const [error, setError] = useState("");
-  const week = ["Sun", "Mon", "Tues", "Wed", "Thur"];
+  // const week = ["Sun", "Mon", "Tues", "Wed", "Thur"];
   const apiKey = import.meta.env.VITE_WEATHER_API_KEY;
   async function getWeather() {
     if (city == "") {
@@ -28,7 +28,7 @@ export default function Weather() {
     const forecastResponse = await fetch(forecastUrl);
     const forecastData = await forecastResponse.json();
     setForecast(forecastData.list);
-    console.log(forecastData);
+    // console.log(forecastData);
   }
 
   useEffect(() => {
@@ -77,7 +77,12 @@ export default function Weather() {
                   .map((item, index) => (
                     <div key={item.dt}>
                       {/* <h3>Day {index + 1}</h3> */}
-                      <h3>{week[index]}</h3>
+                      {/* <h3>{week[index]}</h3> */}
+                      <p>
+                        {new Date(item.dt_txt).toLocaleDateString("en-US", {
+                          weekday: "short",
+                        })}
+                      </p>
                       <p>{item.dt_txt}</p>
                       <p>{item.main.temp}°C</p>
                       <p>{item.weather[0].main}</p>
