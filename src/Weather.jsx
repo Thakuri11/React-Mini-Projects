@@ -70,6 +70,7 @@ export default function Weather() {
                 </>
               )}
             </section>
+            {weather && <h1 className="forecast-heading">5-Days Forecast :</h1>}
             <section className="forecast-display">
               {weather &&
                 forecast
